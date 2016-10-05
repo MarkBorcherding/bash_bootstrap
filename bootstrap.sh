@@ -16,52 +16,47 @@ CYAN="\033[36m";         BRIGHT_CYAN="\033[96m";         BG_CYAN="\033[46m";    
 WHITE="\033[37m";        BRIGHT_WHITE="\033[97m";        BG_WHITE="\033[47m";        BG_BRIGHT_WHITE="\033[107m";
 ORANGE="\033[38;5;208m"; BRIGHT_ORANGE="\033[38;5;216m"; BG_ORANGE="\033[48;5;208m"; BG_BRIGHT_ORANGE="\033[48;5;216m";
 
-fail() {
-  message=${1:-"Something did not go well"}
-  echo -e "${RED}==> ${message} ${exit_code}"
-}
+HEADING="${BG_BRIGHT_BLACK}${BRIGHT_WHITE}"
 
+fail() { echo -e "${RED}==> ${1:-Something did not go well} ${exit_code}"; }
+log() { echo -e "${BLUE}==> ${RESET_COLOR}$1"; }
 verbose() {
   if [ "${verbose}" == "true" ]; then
     echo -e "${BRIGHT_BLACK}==> ${RESET_COLOR}$1"
   fi
 }
 
-log() {
-  echo -e "${BLUE}==> ${RESET_COLOR}$1"
-}
-
 usage() {
   echo -e "
-${BG_YELLOW}${BLACK}${DIM}                     Doing the awesome thing                             ${RESET_COLOR}
+${HEADING}                     Doing the awesome thing                             ${RESET_COLOR}
 
 This program does awesome things that you will want to change.
 
-${BRIGHT_CYAN}┃  $0 ${CYAN}command ${BLUE}[options]${RESET_COLOR}
+${BRIGHT_CYAN}┃  $0 ${CYAN}command ${PURPLE}[options]${RESET_COLOR}
 
-Commands:
+${YELLOW}Commands:${RESET_COLOR}
   • ${CYAN}help${RESET_COLOR} - Show this help
   • ${CYAN}be_awesome${RESET_COLOR} - Do something awesome
 
-Options:
-  • ${BLUE}-h, --help${RESET_COLOR}            - Show help about a command
-  • ${BLUE}-V, --verbose${RESET_COLOR}         - Show verbose logging
+${YELLOW}Options:${RESET_COLOR}
+  • ${PURPLE}-h, --help${RESET_COLOR}            - Show help about a command
+  • ${PURPLE}-V, --verbose${RESET_COLOR}         - Show verbose logging
 
 "
 }
 
 be_awesome_help() {
   echo -e "
-${BG_YELLOW}${BLACK}                                   Be Awesome                                         ${RESET_COLOR}
+${HEADING}                                   Be Awesome                                         ${RESET_COLOR}
 
 This is the command you run to be awesome
 
-${BRIGHT_CYAN}┃  $0 ${CYAN}be_awesome ${BLUE}[options]${RESET_COLOR}
+${BRIGHT_CYAN}┃  $0 ${CYAN}be_awesome ${PURPLE}[options]${RESET_COLOR}
 
-Options:
-  • ${BLUE}-h, --help${RESET_COLOR}    - Show help about a command
-  • ${BLUE}-V, --verbose${RESET_COLOR} - Show verbose logging
-  • ${BLUE}-f, --first${RESET_COLOR}   - Pass the first parameter
+${YELLOW}Options:${RESET_COLOR}
+  • ${PURPLE}-h, --help${RESET_COLOR}    - Show help about a command
+  • ${PURPLE}-V, --verbose${RESET_COLOR} - Show verbose logging
+  • ${PURPLE}-f, --first${RESET_COLOR}   - Pass the first parameter
 "
 }
 
